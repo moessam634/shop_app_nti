@@ -20,6 +20,7 @@ class HomeProductData {
     }
   }
 
+
 }
 // https://fakestoreapi.com/products/category/electronics
 // https://fakestoreapi.com/products/category/jewelery
