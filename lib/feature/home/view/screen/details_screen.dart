@@ -3,8 +3,6 @@ import 'package:shopping_app/core/style/image_app.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import 'package:shopping_app/core/style/text_style.dart';
 import 'package:shopping_app/feature/home/model/model/home_model.dart';
-import 'package:shopping_app/feature/home/view/screen/home_screen.dart';
-import 'package:shopping_app/feature/home/view/widget/card_builder.dart';
 import 'package:shopping_app/feature/home/view/widget/custom_text_widget.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -33,8 +31,9 @@ class DetailsScreen extends StatelessWidget {
             children: [
               CustomTextWidget(text: homeModel.title, style: whiteBold16()),
               CustomTextWidget(
-                  text: homeModel.homeRatingModel.rate.toString(),
-                  style: whiteBold16()),
+                text: homeModel.homeRatingModel.rate.toString(),
+                style: whiteBold16(),
+              ),
             ],
           )
         ],

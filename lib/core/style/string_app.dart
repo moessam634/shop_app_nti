@@ -10,6 +10,8 @@ class StringApp {
   static const String men = "Men's clothes";
   static const String women = "Women's clothes";
   static const String categories = "Categories";
+
+  static const String register = "Register";
 }
 // https://fakestoreapi.com/products/category/electronics
 // https://fakestoreapi.com/products/category/jewelery

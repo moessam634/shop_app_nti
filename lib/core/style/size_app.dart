@@ -15,4 +15,5 @@ class SizeApp {
   static const double s36 =36;
   static const double s40 =40;
   static const double s370 =370;
+  static const double s360 =360;
 }

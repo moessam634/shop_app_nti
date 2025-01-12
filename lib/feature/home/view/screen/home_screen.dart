@@ -21,18 +21,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      HomeCubit(endPoint: endPoint)
-        ..getProduct(),
+      create: (context) => HomeCubit(endPoint: endPoint)..getProduct(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          HomeCubit cubit = BlocProvider.of(context);
+          HomeCubit homeCubit = BlocProvider.of(context);
           return Scaffold(
             drawer: Drawer(
               backgroundColor: Colors.transparent,
               child: CategoryBody(),
             ),
-            appBar: customAppBar(title: cubit.endPoint, actions: [
+            appBar: customAppBar(title: homeCubit.endPoint, actions: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: SizeApp.s16),
                 child: Icon(
@@ -42,7 +40,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               )
             ]),
-            body: HomeScreenBody(),
+            body: HomeScreenBody(
+              state: state,
+            ),
           );
         },
       ),

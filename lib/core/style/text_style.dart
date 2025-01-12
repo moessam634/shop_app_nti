@@ -10,6 +10,11 @@ TextStyle white() {
     color: Colors.white,
   );
 }
+TextStyle grey() {
+  return TextStyle(
+    color: Colors.grey,
+  );
+}
 
 TextStyle blueGrey() {
   return TextStyle(
