@@ -18,7 +18,7 @@ class HomeScreenBody extends StatelessWidget {
     if (state is HomeSuccessState) {
       final successState = state as HomeSuccessState;
       return Padding(
-        padding: const EdgeInsets.all(SizeApp.s16),
+        padding: const EdgeInsets.all(SizeApp.s8),
         child: ListView(
           children: [
             Column(

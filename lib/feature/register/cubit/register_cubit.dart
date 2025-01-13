@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import '../model/data/auth_data.dart';
 import 'register_state.dart';
 
-
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(AuthInitial());
   AuthData authData = AuthData();
@@ -16,6 +15,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       required password,
       required token,
       required profileImage}) {
+    emit(AuthLoadingState());
     authData.postData(
         name: name,
         email: email,
@@ -26,6 +26,5 @@ class RegisterCubit extends Cubit<RegisterState> {
         token: token,
         profileImage: profileImage);
     emit(AuthSuccessState(userData: authData));
-
   }
 }

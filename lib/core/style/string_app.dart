@@ -10,6 +10,7 @@ class StringApp {
   static const String men = "Men's clothes";
   static const String women = "Women's clothes";
   static const String categories = "Categories";
+  static const String description = "Description";
 
   static const String register = "Register";
 }

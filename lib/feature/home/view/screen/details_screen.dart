@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/core/style/image_app.dart';
-import 'package:shopping_app/core/style/size_app.dart';
-import 'package:shopping_app/core/style/text_style.dart';
 import 'package:shopping_app/feature/home/model/model/home_model.dart';
-import 'package:shopping_app/feature/home/view/widget/custom_text_widget.dart';
+import 'package:shopping_app/feature/home/view/widget/details_screen_body.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.homeModel});
@@ -13,31 +10,17 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height / 1.5,
-            child: ClipRRect(
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(SizeApp.s24)),
-                child: Image.network(
-                  ImageApp.jewelryImage,
-                  fit: BoxFit.cover,
-                )),
-          ),
-          CustomTextWidget(text: "\$ ${homeModel.price}", style: whiteBold16()),
-          Row(
-            children: [
-              CustomTextWidget(text: homeModel.title, style: whiteBold16()),
-              CustomTextWidget(
-                text: homeModel.homeRatingModel.rate.toString(),
-                style: whiteBold16(),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: DetailsScreenBody(
+          image: homeModel.image,
+          price: homeModel.price.toString(),
+          title: homeModel.title,
+          description: homeModel.description,
+          rate: homeModel.homeRatingModel.rate.toString(),
+        ));
   }
 }
