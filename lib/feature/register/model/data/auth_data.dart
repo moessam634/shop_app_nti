@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 class AuthData {
   final dio = Dio();
 
+
   postData(
       {required name,
       required email,
@@ -28,9 +29,8 @@ class AuthData {
       return data;
     } on DioException catch (error) {
       if (response.data != null) {
-        print(error.response!.data);
-        var errorMessage = error.response!.data;
-        return errorMessage;
+        print(error.response!.data["message"]);
+        return error.response!.data;
       }
     }
   }

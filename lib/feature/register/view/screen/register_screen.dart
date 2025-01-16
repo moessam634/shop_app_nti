@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/style/color_app.dart';
 import 'package:shopping_app/core/style/text_style.dart';
 import 'package:shopping_app/core/validation/auth_validator.dart';
+import 'package:shopping_app/feature/home/view/screen/home_screen.dart';
+import 'package:shopping_app/feature/home/view/widget/home_screen_body.dart';
+import 'package:shopping_app/feature/register/view/widget/custom_drop_down_form_field.dart';
+import '../../../../core/style/size_app.dart';
 import '../../../../core/style/string_app.dart';
 import '../../cubit/register_cubit.dart';
 import '../../cubit/register_state.dart';
-import '../../model/data/auth_data.dart';
 import '../../../../core/widget/custom_auth_text_field.dart';
 import '../widget/custom_material_button.dart';
 import '../widget/custom_snack_bar.dart';
@@ -20,29 +23,29 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _idController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _tokenController = TextEditingController();
-  final TextEditingController _imageController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
-  bool obscureText = true;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController tokenController = TextEditingController();
+  final TextEditingController imageController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
-  final AuthData authData = AuthData();
+  bool obscureText = true;
 
   @override
   void dispose() {
     super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _phoneController.dispose();
-    _nameController.dispose();
-    _tokenController.dispose();
-    _idController.dispose();
-    _imageController.dispose();
-    _genderController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    nameController.dispose();
+    tokenController.dispose();
+    idController.dispose();
+    imageController.dispose();
+    genderController.dispose();
   }
 
   @override
@@ -62,6 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             }
           },
           builder: (context, state) {
+            RegisterCubit cubit = BlocProvider.of(context);
             return Form(
               key: formKey,
               child: ListView(
@@ -69,10 +73,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      cubit.image == null
+                          ? MaterialButton(
+                              onPressed: () {
+                                cubit.addImage();
+                              },
+                              child: const Icon(
+                                Icons.camera,
+                                size: 80,
+                              ))
+                          : Container(
+                              height: 80,
+                              width: SizeApp.s100,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: FileImage(cubit.image!),
+                                  fit: BoxFit.fill,
+                                ),
+                              )),
                       CustomTextFormField(
                         label: "name",
                         hintText: "enter your name",
-                        controller: _nameController,
+                        controller: nameController,
                         keyboardType: TextInputType.text,
                         prefixIcon: Icon(Icons.person),
                         validator: (value) {
@@ -82,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextFormField(
                         label: "email",
                         hintText: "email",
-                        controller: _emailController,
+                        controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         prefixIcon: Icon(Icons.email),
                         validator: (value) {
@@ -92,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextFormField(
                         label: "phone",
                         hintText: "phone",
-                        controller: _phoneController,
+                        controller: phoneController,
                         keyboardType: TextInputType.number,
                         prefixIcon: Icon(Icons.phone_android_rounded),
                         validator: (value) {
@@ -102,27 +125,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextFormField(
                         label: "national id",
                         hintText: "national id",
-                        controller: _idController,
+                        controller: idController,
                         keyboardType: TextInputType.number,
                         prefixIcon: Icon(Icons.person),
                         validator: (value) {
                           return MyValidators.nationalIdValidator(value);
                         },
                       ),
-                      CustomTextFormField(
-                        label: "gender",
-                        hintText: "gender",
-                        controller: _genderController,
-                        keyboardType: TextInputType.text,
-                        prefixIcon: Icon(Icons.male),
-                        validator: (value) {
-                          return MyValidators.genderValidator(value: value);
-                        },
-                      ),
+                      GenderSelection(genderController: genderController),
                       CustomTextFormField(
                         label: "password",
                         hintText: "password",
-                        controller: _passwordController,
+                        controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         prefixIcon: Icon(Icons.person),
                         validator: (value) {
@@ -132,21 +146,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextFormField(
                         label: "token",
                         hintText: "token",
-                        controller: _tokenController,
+                        controller: tokenController,
                         keyboardType: TextInputType.text,
                         prefixIcon: Icon(Icons.person),
                         validator: (value) {
                           return MyValidators.displayNameValidator(value);
-                        },
-                      ),
-                      CustomTextFormField(
-                        label: "profile image",
-                        hintText: "profile image",
-                        controller: _imageController,
-                        keyboardType: TextInputType.text,
-                        prefixIcon: Icon(Icons.person),
-                        validator: (value) {
-                          return MyValidators.imageValidator(value);
                         },
                       ),
                       CustomMaterialButton(
@@ -159,18 +163,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 context: context,
                                 text: state.userData["message"]);
                           }
-                          authData.postData(
-                            name: _nameController.text,
-                            email: _emailController.text,
-                            phone: _phoneController.text,
-                            nationalId: _idController.text,
-                            gender: _genderController.text,
-                            password: _passwordController.text,
-                            token: _tokenController.text,
-                            profileImage: _imageController.text,
+                          cubit.postData(
+                            name: nameController.text,
+                            email: emailController.text,
+                            phone: phoneController.text,
+                            nationalId: idController.text,
+                            gender: genderController.text,
+                            password: passwordController.text,
+                            token: tokenController.text,
                           );
                         },
-                      )
+                      ),
                     ],
                   ),
                 ],
