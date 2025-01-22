@@ -19,8 +19,6 @@ class HomeProductData {
       throw Exception("failure");
     }
   }
-
-
 }
 // https://fakestoreapi.com/products/category/electronics
 // https://fakestoreapi.com/products/category/jewelery

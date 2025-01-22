@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 
 class CustomMaterialButton extends StatelessWidget {
@@ -6,7 +7,8 @@ class CustomMaterialButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.textStyle,
-    this.onPressed, required this.color,
+    this.onPressed,
+    required this.color,
   });
 
   final String text;
@@ -18,9 +20,10 @@ class CustomMaterialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 16,left: 16,right: 16),
+      margin: EdgeInsets.only(
+          top: SizeApp.s16.h, left: SizeApp.s16.w, right: SizeApp.s16.w),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(SizeApp.s16),
+        borderRadius: BorderRadius.circular(SizeApp.s16.r),
         color: color,
       ),
       child: MaterialButton(

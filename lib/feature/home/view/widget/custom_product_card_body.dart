@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/feature/home/model/model/home_model.dart';
 import '../../../../core/style/color_app.dart';
 import '../../../../core/style/size_app.dart';
 import '../../../../core/style/text_style.dart';
+import '../../../add_cart/cubit/add_cart_cubit.dart';
 import 'custom_image_product.dart';
 import 'custom_text_widget.dart';
 
@@ -15,17 +17,18 @@ class CustomProductCardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(SizeApp.s8),
-      child: SizedBox.fromSize(
-        size: Size(SizeApp.s225, SizeApp.s360),
+      borderRadius: BorderRadius.circular(SizeApp.s8.r),
+      child: SizedBox(
+        width: SizeApp.s225.w,
         child: Card(
           color: ColorApp.kButtonColor,
           child: Padding(
-            padding: const EdgeInsets.all(SizeApp.s16),
+            padding: EdgeInsets.symmetric(
+                vertical: SizeApp.s16.h, horizontal: SizeApp.s16.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: SizeApp.s16,
+              spacing: SizeApp.s16.h,
               children: [
                 CustomImageProduct(
                   image: homeModel.image,
@@ -38,10 +41,16 @@ class CustomProductCardBody extends StatelessWidget {
                   children: [
                     CustomTextWidget(
                         text: "\$ ${homeModel.price}", style: white()),
-                    Icon(
-                      CupertinoIcons.plus_circle_fill,
+                    IconButton(
                       color: Colors.white,
-                      size: SizeApp.s26,
+                      icon: Icon(
+                        CupertinoIcons.plus_circle_fill,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        // AddCartCubit.get(context)
+                        //     .addCartData.addCartData(productId: productId);
+                      },
                     )
                   ],
                 )

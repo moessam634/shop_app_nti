@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/style/size_app.dart';
 import '../../../../core/style/string_app.dart';
 import '../../../../core/style/text_style.dart';
@@ -42,7 +43,7 @@ class DetailsScreenBody extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius:
-                  BorderRadius.only(bottomLeft: Radius.circular(SizeApp.s60)),
+                  BorderRadius.only(bottomLeft: Radius.circular(SizeApp.s60.r)),
               child: Card(
                 color: Colors.white,
                 child: Image.network(image),
@@ -50,24 +51,25 @@ class DetailsScreenBody extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(SizeApp.s16),
+            padding: EdgeInsets.symmetric(
+                vertical: SizeApp.s16.h, horizontal: SizeApp.s16.w),
             child: Column(
-              spacing: SizeApp.s8,
+              spacing: SizeApp.s8.h,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("\$ ${price}", style: redBold30()),
+                Text("\$ $price", style: redBold30()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: blackBold()),
+                      child: Text(
+                        title,
+                        style: blackBold20(),
+                      ),
                     ),
                     Row(
                       children: [
-                        Text(rate, style: blackBold()),
+                        Text(rate, style: blackBold20()),
                         Icon(
                           Icons.star,
                           color: Colors.amber,
@@ -78,9 +80,9 @@ class DetailsScreenBody extends StatelessWidget {
                 ),
                 Text(
                   StringApp.description,
-                  style: blackBold24(),
+                  style: blackBold26(),
                 ),
-                Text(description, style: grey()),
+                Text(description, style: grey20()),
               ],
             ),
           ),

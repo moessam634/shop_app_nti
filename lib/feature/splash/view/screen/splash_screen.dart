@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/core/helper/navigation_helper.dart';
+import 'package:shopping_app/feature/auth/view/screen/login_screen.dart';
 import 'package:shopping_app/feature/splash/view/widget/splash_screen_body.dart';
 import '../../../categories/view/screen/category_screen.dart';
 
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (mounted) {
           NavigationHelper.pushUntil(
             context: context,
-            destination: CategoryScreen(),
+            destination: LoginScreen(),
           );
         }
       },

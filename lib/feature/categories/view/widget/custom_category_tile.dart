@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/core/helper/navigation_helper.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import 'package:shopping_app/core/style/text_style.dart';
@@ -21,8 +22,8 @@ class CustomCategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(SizeApp.s24),
-        side: BorderSide(width: SizeApp.s3),
+        borderRadius: BorderRadius.circular(SizeApp.s24.r),
+        side: BorderSide(width: SizeApp.s3.w),
       ),
       selectedTileColor: ColorApp.kButtonColor,
       tileColor: ColorApp.kButtonColor,

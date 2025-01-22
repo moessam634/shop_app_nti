@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/feature/home/model/model/home_model.dart';
-import 'package:shopping_app/feature/home/view/screen/details_screen.dart';
+import 'package:shopping_app/feature/details/view/screen/details_screen.dart';
 import 'package:shopping_app/feature/home/view/widget/custom_product_card_body.dart';
 import '../../../../core/helper/navigation_helper.dart';
 

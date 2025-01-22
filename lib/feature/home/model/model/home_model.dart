@@ -31,8 +31,8 @@ class HomeModel {
 }
 
 class HomeRatingModel {
-  final double rate;
-  final int count;
+  final num rate;
+  final num count;
 
   HomeRatingModel({required this.rate, required this.count});
 

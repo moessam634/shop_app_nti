@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/core/style/image_app.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import 'package:shopping_app/core/style/string_app.dart';
@@ -10,10 +11,10 @@ class CategoryBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: SizeApp.s16),
+      padding: EdgeInsets.symmetric(horizontal: SizeApp.s16.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        spacing: SizeApp.s24,
+        spacing: SizeApp.s24.h,
         children: [
           CustomCategoryTile(
             title: StringApp.electronics,

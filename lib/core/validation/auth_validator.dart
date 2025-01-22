@@ -33,8 +33,6 @@ class MyValidators {
     } else if (value.length != 11) {
       return 'Phone number must be exactly 11 digits long';
     }
-
-
     return null;
   }
 
@@ -78,6 +76,7 @@ class MyValidators {
     }
     return null;
   }
+
   static String? tokenValidator(String? val) {
     if (val == null || val.isEmpty) {
       return 'token cannot be empty';

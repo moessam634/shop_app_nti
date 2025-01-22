@@ -2,15 +2,20 @@ import 'package:bloc/bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/core/helper/cache_data/cache_data.dart';
 import 'bloc_observer/app_bloc_observer.dart';
+import 'feature/add_cart/data/add_cart_data/add_cart_data.dart';
 import 'my_app.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPref.init();
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => MyApp(), // Wrap your app
+      builder: (context) => MyApp(),
     ),
+    // MyApp(),
   );
 }

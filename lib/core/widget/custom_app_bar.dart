@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import '../style/color_app.dart';
 import '../style/text_style.dart';
@@ -13,6 +14,6 @@ AppBar customAppBar({required String title, List<Widget>? actions}) {
     ),
     centerTitle: true,
     actions: actions,
-    iconTheme: IconThemeData(color: Colors.white, size: SizeApp.s26),
+    iconTheme: IconThemeData(color: Colors.white, size: SizeApp.s26.sp),
   );
 }

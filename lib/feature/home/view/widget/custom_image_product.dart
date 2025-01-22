@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 
 class CustomImageProduct extends StatelessWidget {
@@ -17,14 +18,10 @@ class CustomImageProduct extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: image,
           fit: BoxFit.cover,
-          placeholder: (context, url) => CircularProgressIndicator(),
+          placeholder: (context, url) => SpinKitFadingCircle(color: Colors.grey),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),
       ),
     );
   }
 }
-// Image.network(
-//           image,
-//           fit: BoxFit.cover,
-//         )

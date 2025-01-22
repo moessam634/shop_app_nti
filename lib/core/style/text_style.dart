@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 TextStyle whiteBold16() {
   return TextStyle(
-      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16);
+      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.sp);
+}
+
+TextStyle whiteBold12() {
+  return TextStyle(
+      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12.sp);
 }
 
 TextStyle white() {
@@ -11,22 +17,72 @@ TextStyle white() {
   );
 }
 
-TextStyle blackBold24() {
+TextStyle blackBold26() {
   return TextStyle(
-      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24);
+      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 26.sp);
 }
 
-TextStyle blackBold() {
+TextStyle blackBold20() {
+  return TextStyle(
+      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.sp);
+}
+
+TextStyle norm16() {
+  return TextStyle(fontSize: 16.sp);
+}
+
+TextStyle norm10() {
+  return TextStyle(fontSize: 10.sp);
+}
+
+TextStyle norm12() {
+  return TextStyle(fontSize:12.sp);
+}
+TextStyle norm6() {
+  return TextStyle(fontSize:6.sp);
+}
+
+TextStyle black20() {
+  return TextStyle(color: Colors.black, fontSize: 20.sp);
+}
+
+TextStyle black10() {
   return TextStyle(
     color: Colors.black,
-    fontWeight: FontWeight.bold,
+    fontSize: 10.sp,
+  );
+}TextStyle black6() {
+  return TextStyle(
+    color: Colors.black,
+    fontSize: 6.sp,
   );
 }
 
-TextStyle grey() {
+TextStyle black16() {
   return TextStyle(
-    color: Colors.grey,
+    color: Colors.black,
+    fontSize: 16.sp,
   );
+}TextStyle black18() {
+  return TextStyle(
+    color: Colors.black,
+    fontSize: 16.sp,
+  );
+}
+
+TextStyle black12() {
+  return TextStyle(
+    color: Colors.black,
+    fontSize: 12.sp,
+  );
+}
+
+TextStyle grey20() {
+  return TextStyle(color: Colors.grey, fontSize: 20.sp);
+}
+
+TextStyle grey16() {
+  return TextStyle(color: Colors.grey, fontSize: 16.sp);
 }
 
 TextStyle blueGrey() {
@@ -37,7 +93,7 @@ TextStyle blueGrey() {
 
 TextStyle deepPurple30() {
   return TextStyle(
-    fontSize: 30,
+    fontSize: 30.sp,
     fontWeight: FontWeight.bold,
     color: Colors.deepPurple[900],
   );
@@ -45,7 +101,7 @@ TextStyle deepPurple30() {
 
 TextStyle redBold30() {
   return TextStyle(
-    fontSize: 30,
+    fontSize: 30.sp,
     fontWeight: FontWeight.bold,
     color: Colors.redAccent,
   );

@@ -6,16 +6,14 @@ import 'package:shopping_app/core/widget/custom_app_bar.dart';
 import 'package:shopping_app/feature/categories/view/widget/category_body.dart';
 import 'package:shopping_app/feature/home/cubit/home_cubit.dart';
 import 'package:shopping_app/feature/home/cubit/home_state.dart';
-import 'package:shopping_app/feature/home/model/data/home_product_data.dart';
 import 'package:shopping_app/feature/home/view/widget/home_screen_body.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({
+  const HomeScreen({
     super.key,
     required this.endPoint,
   });
 
-  final HomeProductData homeProductData = HomeProductData();
   final String endPoint;
 
   @override
@@ -27,7 +25,8 @@ class HomeScreen extends StatelessWidget {
           HomeCubit homeCubit = BlocProvider.of(context);
           return Scaffold(
             drawer: Drawer(
-              backgroundColor: Colors.transparent,
+              backgroundColor:
+                  Colors.transparent.withAlpha(SizeApp.s50.toInt()),
               child: CategoryBody(),
             ),
             appBar: customAppBar(title: homeCubit.endPoint, actions: [

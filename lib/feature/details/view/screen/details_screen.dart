@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/feature/home/model/model/home_model.dart';
-import 'package:shopping_app/feature/home/view/widget/details_screen_body.dart';
+import 'package:shopping_app/feature/details/view/widget/details_screen_body.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.homeModel});
