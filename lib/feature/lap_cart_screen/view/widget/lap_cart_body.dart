@@ -1,28 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/feature/add_cart/cubit/add_cart_cubit.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopping_app/core/style/size_app.dart';
+import '../../../../core/style/string_app.dart';
+import '../../../cart/cubit/add_cart_cubit.dart';
 import '../../model/model/laptop_model.dart';
 
 class LapCartBody extends StatelessWidget {
   const LapCartBody({
     super.key,
     required this.laptopModel,
+    required this.productId,
   });
 
   final LaptopModel laptopModel;
+  final String productId;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.symmetric(
+          vertical: SizeApp.s16.h, horizontal: SizeApp.s16.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: SizeApp.s16.h,
         children: [
           Center(
             child: Image.network(
               laptopModel.image,
-              height: 200,
+              height: SizeApp.s200.h,
               width: double.infinity,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
@@ -34,51 +40,44 @@ class LapCartBody extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 16),
-          // Name and Company
           Text(
             laptopModel.name,
           ),
-          const SizedBox(height: 8),
           Text(
             "By ${laptopModel.company}",
           ),
-          const SizedBox(height: 16),
           // Price
           Text(
             "\$${laptopModel.price.toStringAsFixed(2)}",
           ),
-          const SizedBox(height: 16),
           // Description
           Text(
-            "Description:",
+            "${StringApp.description} :",
           ),
-          const SizedBox(height: 8),
           Text(
             laptopModel.description,
           ),
-          const SizedBox(height: 16),
-          // Category and Status
           Row(
+            spacing: SizeApp.s8.w,
             children: [
               Chip(
                 label: Text(laptopModel.category),
                 backgroundColor: Colors.blue.shade100,
               ),
-              const SizedBox(width: 8),
               Chip(
                 label: Text(laptopModel.status),
                 backgroundColor: laptopModel.status == "Available"
                     ? Colors.green.shade100
                     : Colors.red.shade100,
               ),
-              IconButton(onPressed: (){
-                AddCartCubit.get(context).addCartData;
-              }, icon: Icon(CupertinoIcons.cart))
+              IconButton(
+                  onPressed: () {
+                    AddCartCubit.get(context)
+                        .addCartCubit(productId: productId);
+                  },
+                  icon: Icon(CupertinoIcons.cart))
             ],
           ),
-          const SizedBox(height: 16),
-          // Stock Information
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -5,7 +5,6 @@ import 'package:shopping_app/feature/home/model/model/home_model.dart';
 import '../../../../core/style/color_app.dart';
 import '../../../../core/style/size_app.dart';
 import '../../../../core/style/text_style.dart';
-import '../../../add_cart/cubit/add_cart_cubit.dart';
 import 'custom_image_product.dart';
 import 'custom_text_widget.dart';
 

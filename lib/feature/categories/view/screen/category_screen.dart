@@ -21,28 +21,28 @@ class CategoryScreen extends StatelessWidget {
       create: (context) => ProfileCubit()..getProfileCubit(),
       child: Scaffold(
         appBar: customAppBar(title: StringApp.categories),
-        bottomNavigationBar: CurvedNavigationBar(
-          color: ColorApp.kButtonColor,
-          items: [
-            Icon(
-              Icons.category_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.laptop_mac_sharp,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              CupertinoIcons.cart_badge_plus,
-              size: 30,
-              color: Colors.white,
-            ),
-          ],
-          onTap: (value) {},
-          backgroundColor: Colors.white,
-        ),
+        // bottomNavigationBar: CurvedNavigationBar(
+        //   color: ColorApp.kButtonColor,
+        //   items: [
+        //     Icon(
+        //       Icons.category_outlined,
+        //       size: 30,
+        //       color: Colors.white,
+        //     ),
+        //     Icon(
+        //       Icons.laptop_mac_sharp,
+        //       size: 30,
+        //       color: Colors.white,
+        //     ),
+        //     Icon(
+        //       CupertinoIcons.cart_badge_plus,
+        //       size: 30,
+        //       color: Colors.white,
+        //     ),
+        //   ],
+        //   onTap: (value) {},
+        //   backgroundColor: Colors.white,
+        // ),
         drawer: ProfileDrawer(),
         body: CategoryBody(),
       ),

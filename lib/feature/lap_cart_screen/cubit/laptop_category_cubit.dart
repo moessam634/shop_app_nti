@@ -5,7 +5,7 @@ import 'laptop_category_state.dart';
 class LaptopCategoryCubit extends Cubit<LaptopCategoryState> {
   LaptopCategoryCubit() : super(LaptopCategoryInitial());
 
-  static LaptopCategoryCubit get(context) => BlocProvider.of(context);
+  // static LaptopCategoryCubit get(context) => BlocProvider.of(context);
   final LapData lapData = LapData();
 
   getLapCubit() async {

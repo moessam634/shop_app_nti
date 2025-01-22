@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/feature/auth/view/screen/login_screen.dart';
-import 'package:shopping_app/feature/lap_cart_screen/view/screen/lap_cart_screen.dart';
 import '../../../../core/helper/navigation_helper.dart';
 import '../../../categories/view/screen/category_screen.dart';
 import '../../cubit/auth_state.dart';
@@ -14,7 +13,7 @@ void blocListener(context, state) {
           text: state.userData["message"],
           backgroundColor: Colors.green);
       NavigationHelper.pushUntil(
-          context: context, destination: LapCartScreen());
+          context: context, destination: CategoryScreen());
     }
     if (state.userData["status"] == "error") {
       customSnackBar(

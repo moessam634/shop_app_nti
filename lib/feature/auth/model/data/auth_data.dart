@@ -11,11 +11,11 @@ class AuthData {
     );
     try {
       var data = response.data;
-      var nationalId = data["user"]["nationalId"];
       var token = data["user"]["token"];
       SharedPref.sharedPref!.setString("token", token);
       print(token);
-      SharedPref.sharedPref!.setString("nationalId", nationalId);
+      var nationalId = data["user"]["nationalId"];
+       SharedPref.sharedPref!.setString("nationalId", nationalId);
       return data;
     } on DioException catch (error) {
       if (error.response != null) {

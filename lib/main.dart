@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/core/helper/cache_data/cache_data.dart';
 import 'bloc_observer/app_bloc_observer.dart';
-import 'feature/add_cart/data/add_cart_data/add_cart_data.dart';
 import 'my_app.dart';
 
 void main() {

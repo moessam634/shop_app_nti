@@ -31,6 +31,7 @@ class LapCartScreen extends StatelessWidget {
               itemCount: state.lapModelList.length,
               itemBuilder: (context, index) => LapCartBody(
                 laptopModel: state.lapModelList[index],
+                productId: state.lapModelList[index].id,
               ),
             );
           }

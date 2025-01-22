@@ -4,6 +4,12 @@ import 'package:shopping_app/core/style/image_app.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import 'package:shopping_app/core/style/string_app.dart';
 import 'package:shopping_app/feature/categories/view/widget/custom_category_tile.dart';
+import 'package:shopping_app/feature/lap_cart_screen/view/screen/lap_cart_screen.dart';
+
+import '../../../../core/helper/navigation_helper.dart';
+import '../../../../core/style/color_app.dart';
+import '../../../../core/style/text_style.dart';
+import 'custom_category_image.dart';
 
 class CategoryBody extends StatelessWidget {
   const CategoryBody({super.key});
@@ -36,6 +42,25 @@ class CategoryBody extends StatelessWidget {
             endPoint: StringApp.womenEndPoint,
             image: ImageApp.jewelryImage,
           ),
+          ListTile(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(SizeApp.s24.r),
+              side: BorderSide(width: SizeApp.s3.w),
+            ),
+            selectedTileColor: ColorApp.kButtonColor,
+            tileColor: ColorApp.kButtonColor,
+            onTap: () {
+              NavigationHelper.push(
+                  context: context, destination: LapCartScreen());
+            },
+            title: Text(
+              "Laptop Screen",
+              style: whiteBold16(),
+            ),
+            trailing: CustomCategoryImage(
+                image:
+                    "https://res.cloudinary.com/dzh2hde2n/image/upload/v1684434230/hsincqjvphkmfbrcoc2b.png"),
+          )
         ],
       ),
     );
