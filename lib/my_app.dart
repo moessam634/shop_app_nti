@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/feature/auth/cubit/auth_cubit.dart';
+import 'package:shopping_app/feature/favorite/cubit/favorite_cubit.dart';
 import 'package:shopping_app/feature/lap_cart_screen/view/screen/lap_cart_screen.dart';
 import 'package:shopping_app/feature/profile/view/screen/profile_drawer.dart';
 import 'core/style/color_app.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => LaptopCategoryCubit()..getLapCubit(),
+            ),
+            BlocProvider(
+              create: (context) => FavoriteCubit(),
             ),
           ],
           child: MaterialApp(

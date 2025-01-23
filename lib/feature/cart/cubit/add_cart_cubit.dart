@@ -14,9 +14,16 @@ class AddCartCubit extends Cubit<AddCartState> {
     emit(AddCartSuccess());
   }
 
-  getAllProductsCubit() {
+  getAllProductsCubit() async {
     emit(AddCartLoading());
-    var success = addCartData.getAllProducts();
+    var success = await addCartData.getAllProducts();
     emit(GetProductsSuccess(products: success));
+  }
+
+  deleteProduct({required String productId}) async {
+    emit(AddCartLoading());
+    await addCartData.deleteProducts(productId: productId);
+    emit(DeleteCartSuccess());
+    getAllProductsCubit();
   }
 }

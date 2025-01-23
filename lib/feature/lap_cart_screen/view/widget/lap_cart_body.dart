@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopping_app/core/helper/navigation_helper.dart';
 import 'package:shopping_app/core/style/size_app.dart';
+import 'package:shopping_app/feature/cart/view/screen/cart_screen.dart';
+import 'package:shopping_app/feature/favorite/cubit/favorite_cubit.dart';
 import '../../../../core/style/string_app.dart';
 import '../../../cart/cubit/add_cart_cubit.dart';
 import '../../model/model/laptop_model.dart';
@@ -74,8 +77,16 @@ class LapCartBody extends StatelessWidget {
                   onPressed: () {
                     AddCartCubit.get(context)
                         .addCartCubit(productId: productId);
+                    NavigationHelper.push(
+                        context: context, destination: CartScreen());
                   },
-                  icon: Icon(CupertinoIcons.cart))
+                  icon: Icon(CupertinoIcons.cart)),
+              IconButton(
+                  onPressed: () {
+                    FavoriteCubit.get(context)
+                        .addFavoriteCubit(productId: productId);
+                  },
+                  icon: Icon(CupertinoIcons.square_favorites_alt_fill)),
             ],
           ),
           Row(
