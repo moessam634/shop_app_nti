@@ -81,18 +81,18 @@ class _LoginBodyState extends State<LoginBody> {
                         return MyValidators.passwordValidator(value);
                       },
                     ),
-                    if (state is AuthLoadingState)
-                      SpinKitFadingCircle(color: Colors.grey),
-                    CustomMaterialButton(
-                      text: StringApp.login,
-                      textStyle: whiteBold12(),
-                      color: ColorApp.kButtonColor,
-                      onPressed: () {
-                        cubit.loginCubit(
-                            email: widget.emailController.text,
-                            password: widget.passwordController.text);
-                      },
-                    ),
+                    state is AuthLoadingState
+                        ? SpinKitFadingCircle(color: Colors.grey,size: 35,)
+                        : CustomMaterialButton(
+                            text: StringApp.login,
+                            textStyle: whiteBold12(),
+                            color: ColorApp.kButtonColor,
+                            onPressed: () {
+                              cubit.loginCubit(
+                                  email: widget.emailController.text,
+                                  password: widget.passwordController.text);
+                            },
+                          ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

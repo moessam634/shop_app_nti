@@ -7,7 +7,7 @@ final class LaptopCategoryInitial extends LaptopCategoryState {}
 final class LaptopCategoryLoading extends LaptopCategoryState {}
 
 final class LaptopCategorySuccess extends LaptopCategoryState {
-  final List<LaptopModel> lapModelList;
+  final List<LaptopModel> lapList;
 
-  LaptopCategorySuccess({required this.lapModelList});
+  LaptopCategorySuccess({required this.lapList});
 }

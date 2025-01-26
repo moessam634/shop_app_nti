@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shopping_app/core/helper/cache_data/cache_data.dart';
 
 class AuthData {
@@ -13,13 +14,17 @@ class AuthData {
       var data = response.data;
       var token = data["user"]["token"];
       SharedPref.sharedPref!.setString("token", token);
-      print(token);
+      if (kDebugMode) {
+        print(token);
+      }
       var nationalId = data["user"]["nationalId"];
-       SharedPref.sharedPref!.setString("nationalId", nationalId);
+      SharedPref.sharedPref!.setString("nationalId", nationalId);
       return data;
     } on DioException catch (error) {
       if (error.response != null) {
-        print(error.response!.data);
+        if (kDebugMode) {
+          print(error.response!.data);
+        }
         return error.response!.data;
       }
     }
@@ -51,7 +56,9 @@ class AuthData {
       return data;
     } on DioException catch (error) {
       if (error.response != null) {
-        print(error.response!.data);
+        if (kDebugMode) {
+          print(error.response!.data);
+        }
         return error.response!.data;
       }
     }

@@ -1,5 +1,6 @@
 class SizeApp {
   static const double s60 = 60;
+  static const double s80 = 80;
   static const double s50 = 50;
   static const double s100 = 100;
   static const double s24 = 24;

@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shopping_app/core/style/size_app.dart';
-import 'package:shopping_app/feature/cart/cubit/add_cart_cubit.dart';
-import 'package:shopping_app/feature/cart/cubit/add_cart_state.dart';
+import 'package:shopping_app/core/style/string_app.dart';
+import 'package:shopping_app/core/style/text_style.dart';
+import 'package:shopping_app/core/widget/custom_app_bar.dart';
+import 'package:shopping_app/feature/cart/cubit/cart_cubit.dart';
+import 'package:shopping_app/feature/cart/cubit/cart_state.dart';
 import '../widget/cart_item_card.dart';
 
 class CartScreen extends StatelessWidget {
@@ -15,10 +18,7 @@ class CartScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddCartCubit()..getAllProductsCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Shopping Cart"),
-          centerTitle: true,
-        ),
+        appBar: customAppBar(title: StringApp.cart),
         body:
             BlocBuilder<AddCartCubit, AddCartState>(builder: (context, state) {
           if (state is GetProductsSuccess) {
@@ -26,6 +26,7 @@ class CartScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    shrinkWrap: true,
                     itemCount: state.products.length,
                     itemBuilder: (context, index) {
                       return CartItemCard(
@@ -43,18 +44,11 @@ class CartScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Total:",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: bold18(),
                       ),
                       Text(
                         "\$${state.products.fold<num>(0, (sum, item) => sum + (item.totalPrice)).toStringAsFixed(2)}",
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
+                        style: greenBold18(),
                       ),
                     ],
                   ),

@@ -1,28 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../data/add_cart_data/add_cart_data.dart';
-import 'add_cart_state.dart';
+import 'package:shopping_app/feature/cart/data/cart_data/cart_data.dart';
+import 'cart_state.dart';
 
 class AddCartCubit extends Cubit<AddCartState> {
   AddCartCubit() : super(AddCartInitial());
 
   static AddCartCubit get(context) => BlocProvider.of(context);
-  final AddCartData addCartData = AddCartData();
+  final CartData data = CartData();
 
-  addCartCubit({required String productId}) {
+  addCartCubit({required String productId}) async {
     emit(AddCartLoading());
-    addCartData.addCartData(productId: productId);
-    emit(AddCartSuccess());
+    final success = await data.addCartData(productId: productId);
+    final message = success['message'];
+    emit(AddCartSuccess(message: message));
   }
 
   getAllProductsCubit() async {
     emit(AddCartLoading());
-    var success = await addCartData.getAllProducts();
+    var success = await data.getAllProducts();
     emit(GetProductsSuccess(products: success));
   }
 
   deleteProduct({required String productId}) async {
     emit(AddCartLoading());
-    await addCartData.deleteProducts(productId: productId);
+    await data.deleteProducts(productId: productId);
     emit(DeleteCartSuccess());
     getAllProductsCubit();
   }

@@ -3,7 +3,7 @@ import 'package:shopping_app/feature/auth/view/screen/login_screen.dart';
 import '../../../../core/helper/navigation_helper.dart';
 import '../../../categories/view/screen/category_screen.dart';
 import '../../cubit/auth_state.dart';
-import 'custom_snack_bar.dart';
+import '../../../../core/widget/custom_snack_bar.dart';
 
 void blocListener(context, state) {
   if (state is AuthSuccessState) {

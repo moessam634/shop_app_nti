@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:shopping_app/feature/cart/data/add_cart_data/add_cart_data.dart';
-import 'package:shopping_app/feature/favorite/model/favorite_model.dart';
+import 'package:shopping_app/feature/favorite/model/model/favorite_model.dart';
+import '../../../cart/data/cart_data/cart_data.dart';
 
 class FavoriteData {
-   Dio dio = Dio();
+  Dio dio = Dio();
 
   addFavorite({required String productId}) async {
     var response = await dio.post("https://elwekala.onrender.com/favorite",
@@ -13,7 +13,7 @@ class FavoriteData {
     return data;
   }
 
-   getAllFavorite() async {
+  getAllFavorite() async {
     var response = await dio.get("https://elwekala.onrender.com/favorite",
         data: {"nationalId": getNationalId});
     try {
@@ -30,5 +30,12 @@ class FavoriteData {
         print(error.response!.data);
       }
     }
+  }
+
+  deleteFavorite({required String productId}) async {
+    var response = await dio.delete("https://elwekala.onrender.com/favorite",
+        data: {"nationalId": getNationalId, "productId": productId});
+    var repoData = response.data;
+    return repoData;
   }
 }

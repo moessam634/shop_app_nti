@@ -167,7 +167,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                       textStyle: whiteBold16(),
                       color: ColorApp.kButtonColor,
                       onPressed: () {
-                        cubit.registerData(
+                        cubit.registerCubit(
                           name: nameController.text,
                           email: emailController.text,
                           phone: phoneController.text,

@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shopping_app/core/helper/navigation_helper.dart';
 import 'package:shopping_app/core/style/size_app.dart';
-import 'package:shopping_app/feature/cart/view/screen/cart_screen.dart';
+import 'package:shopping_app/core/widget/custom_snack_bar.dart';
 import 'package:shopping_app/feature/favorite/cubit/favorite_cubit.dart';
 import '../../../../core/style/string_app.dart';
-import '../../../cart/cubit/add_cart_cubit.dart';
+import '../../../cart/cubit/cart_cubit.dart';
+import '../../../cart/cubit/cart_state.dart';
+import '../../../favorite/cubit/favorite_state.dart';
 import '../../model/model/laptop_model.dart';
+import 'custom_image_stack.dart';
 
 class LapCartBody extends StatelessWidget {
   const LapCartBody({
@@ -28,38 +30,27 @@ class LapCartBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: SizeApp.s16.h,
         children: [
-          Center(
-            child: Image.network(
-              laptopModel.image,
-              height: SizeApp.s200.h,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.image_not_supported,
-                  size: 100,
-                  color: Colors.grey,
-                );
-              },
-            ),
+          CustomImageStack(
+            image: laptopModel.image,
+            onPressed: () async {
+              await FavoriteCubit.get(context)
+                  .addFavoriteCubit(productId: productId);
+              if (context.mounted) {
+                final state = FavoriteCubit.get(context).state;
+                if (state is FavoriteAddSuccess) {
+                  customSnackBar(
+                      context: context,
+                      text: state.message,
+                      backgroundColor: Colors.green);
+                }
+              }
+            },
           ),
-          Text(
-            laptopModel.name,
-          ),
-          Text(
-            "By ${laptopModel.company}",
-          ),
-          // Price
-          Text(
-            "\$${laptopModel.price.toStringAsFixed(2)}",
-          ),
-          // Description
-          Text(
-            "${StringApp.description} :",
-          ),
-          Text(
-            laptopModel.description,
-          ),
+          Text(laptopModel.name),
+          Text("By ${laptopModel.company}"),
+          Text("\$${laptopModel.price.toStringAsFixed(2)}"),
+          Text("${StringApp.description} :"),
+          Text(laptopModel.description),
           Row(
             spacing: SizeApp.s8.w,
             children: [
@@ -74,19 +65,20 @@ class LapCartBody extends StatelessWidget {
                     : Colors.red.shade100,
               ),
               IconButton(
-                  onPressed: () {
-                    AddCartCubit.get(context)
-                        .addCartCubit(productId: productId);
-                    NavigationHelper.push(
-                        context: context, destination: CartScreen());
+                  onPressed: () async {
+                    final cubit = AddCartCubit.get(context);
+                    await cubit.addCartCubit(productId: productId);
+                    final state = cubit.state;
+                    if (context.mounted) {
+                      if (state is AddCartSuccess) {
+                        customSnackBar(
+                            context: context,
+                            text: state.message,
+                            backgroundColor: Colors.green);
+                      }
+                    }
                   },
-                  icon: Icon(CupertinoIcons.cart)),
-              IconButton(
-                  onPressed: () {
-                    FavoriteCubit.get(context)
-                        .addFavoriteCubit(productId: productId);
-                  },
-                  icon: Icon(CupertinoIcons.square_favorites_alt_fill)),
+                  icon: Icon(CupertinoIcons.cart_badge_plus, size: 30)),
             ],
           ),
           Row(

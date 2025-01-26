@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shopping_app/core/helper/cache_data/cache_data.dart';
 import 'package:shopping_app/feature/cart/data/model/cart_model.dart';
 
 var getNationalId = SharedPref.sharedPref!.get("nationalId");
 
-class AddCartData {
+class CartData {
   final Dio dio = Dio();
 
   addCartData({required String productId}) async {
@@ -17,8 +18,10 @@ class AddCartData {
       },
     );
     var repoData = response.data;
-    print(repoData);
-    return repoData; // مش محتاج ارجع حاجه هنا اضيف بس
+    if (kDebugMode) {
+      print(repoData);
+    }
+    return repoData;
   }
 
   Future<List<CartModel>> getAllProducts() async {
@@ -30,7 +33,7 @@ class AddCartData {
       List<CartModel> products = data
           .map(
             (e) => CartModel.fromJson(e),
-      )
+          )
           .toList();
       return products;
     } on DioException catch (error) {
@@ -42,8 +45,8 @@ class AddCartData {
   }
 
   deleteProducts({required String productId}) async {
-    var response = await dio.delete(
-        "https://elwekala.onrender.com/cart/delete", data: {
+    var response =
+        await dio.delete("https://elwekala.onrender.com/cart/delete", data: {
       "nationalId": getNationalId,
       "productId": productId,
       "quantity": "1",

@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shopping_app/core/style/text_style.dart';
+import 'package:shopping_app/core/widget/custom_snack_bar.dart';
+import 'package:shopping_app/feature/favorite/cubit/favorite_cubit.dart';
+import 'package:shopping_app/feature/favorite/cubit/favorite_state.dart';
+import 'package:shopping_app/feature/favorite/model/model/favorite_model.dart';
 import '../../../../core/style/size_app.dart';
-import '../../cubit/cart_cubit.dart';
-import '../../data/model/cart_model.dart';
 
-class CartItemCard extends StatelessWidget {
-  final CartModel cartItem;
+class FavoriteItemCard extends StatelessWidget {
+  final FavoriteModel favoriteModel;
   final String productId;
 
-  const CartItemCard({
+  const FavoriteItemCard({
     super.key,
-    required this.cartItem,
     required this.productId,
+    required this.favoriteModel,
   });
 
   @override
@@ -25,9 +27,10 @@ class CartItemCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(SizeApp.s16),
         child: Row(
+          spacing: SizeApp.s16.w,
           children: [
             CachedNetworkImage(
-              imageUrl: cartItem.image,
+              imageUrl: favoriteModel.image,
               placeholder: (context, url) => SpinKitFadingCircle(
                 color: Colors.grey,
               ),
@@ -36,19 +39,19 @@ class CartItemCard extends StatelessWidget {
               width: SizeApp.s80.w,
               fit: BoxFit.cover,
             ),
-            SizedBox(width: SizeApp.s16.w),
+            // Product Details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    cartItem.name,
+                    favoriteModel.name,
                     style: bold16(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    cartItem.description,
+                    favoriteModel.description,
                     style: grey14(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -58,19 +61,23 @@ class CartItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$${cartItem.price.toStringAsFixed(2)}",
+                        "\$${favoriteModel.price.toStringAsFixed(2)}",
                         style: green14(),
                       ),
-                      Text(
-                        "Qty: ${cartItem.quantity}",
-                        style: blue14(),
-                      ),
                       IconButton(
-                          onPressed: () {
-                            AddCartCubit.get(context)
-                                .deleteProduct(productId: productId);
-                          },
-                          icon: Icon(Icons.delete)),
+                        onPressed: () async {
+                          await FavoriteCubit.get(context)
+                              .deleteFavoriteCubit(productId: productId);
+                          if (context.mounted) {
+                            final state = FavoriteCubit.get(context).state;
+                            if (state is FavoriteDelete) {
+                              customSnackBar(
+                                  context: context, text: state.message);
+                            }
+                          }
+                        },
+                        icon: Icon(Icons.delete),
+                      )
                     ],
                   ),
                 ],

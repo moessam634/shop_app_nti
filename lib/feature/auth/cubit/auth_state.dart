@@ -5,7 +5,7 @@ final class AuthInitial extends AuthState {}
 final class AuthLoadingState extends AuthState {}
 
 final class AuthSuccessState extends AuthState {
-  final userData;
+  final dynamic userData;
 
   AuthSuccessState({required this.userData});
 }

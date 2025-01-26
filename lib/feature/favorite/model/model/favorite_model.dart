@@ -1,11 +1,13 @@
 class FavoriteModel {
+  final String id;
   final String image;
   final String name;
   final num price;
   final String description;
 
   FavoriteModel(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.name,
       required this.price,
       required this.description});
@@ -16,6 +18,7 @@ class FavoriteModel {
       name: jsonData["name"],
       price: jsonData["price"],
       description: jsonData["description"],
+      id: jsonData["_id"],
     );
   }
 }

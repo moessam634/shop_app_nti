@@ -13,7 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
   File? image;
   String? userImage;
 
-  registerData({
+  registerCubit({
     required name,
     required email,
     required phone,
@@ -55,7 +55,6 @@ class AuthCubit extends Cubit<AuthState> {
   loginCubit({required email, required password}) async {
     emit(AuthLoadingState());
     var success = await authData.loginData(email: email, password: password);
-
     emit(AuthSuccessState(userData: success));
   }
 }
