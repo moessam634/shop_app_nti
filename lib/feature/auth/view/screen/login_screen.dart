@@ -18,11 +18,7 @@ class LoginScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: ColorApp.kButtonColor,
       ),
-      body: LoginBody(
-        // passwordController: passwordController,
-        // emailController: emailController,
-        // formKey: formKey,
-      ),
+      body: LoginBody(),
     );
   }
 }

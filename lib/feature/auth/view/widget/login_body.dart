@@ -17,11 +17,7 @@ import 'bloc_listener.dart';
 import 'custom_material_button.dart';
 
 class LoginBody extends StatefulWidget {
-  const LoginBody({
-    super.key,
-    // required this.passwordController,
-    // required this.emailController,
-  });
+  const LoginBody({super.key});
 
   @override
   State<LoginBody> createState() => _LoginBodyState();
@@ -105,9 +101,11 @@ class _LoginBodyState extends State<LoginBody> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          StringApp.doNotHaveAcc,
-                          style: black18(),
+                        Flexible(
+                          child: Text(
+                            StringApp.doNotHaveAcc,
+                            style: black18(),
+                          ),
                         ),
                         TextButton(
                             onPressed: () {
