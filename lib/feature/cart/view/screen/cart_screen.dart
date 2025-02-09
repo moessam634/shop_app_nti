@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:shopping_app/core/helper/navigation_helper.dart';
-import 'package:shopping_app/core/style/color_app.dart';
 import 'package:shopping_app/core/style/size_app.dart';
 import 'package:shopping_app/core/style/string_app.dart';
 import 'package:shopping_app/core/style/text_style.dart';
 import 'package:shopping_app/core/widget/custom_app_bar.dart';
-import 'package:shopping_app/feature/auth/view/widget/custom_material_button.dart';
 import 'package:shopping_app/feature/cart/cubit/cart_cubit.dart';
 import 'package:shopping_app/feature/cart/cubit/cart_state.dart';
-import 'package:shopping_app/feature/cart/view/screen/payment_details.dart';
 import '../widget/cart_item_card.dart';
 import '../widget/custom_button.dart';
 
