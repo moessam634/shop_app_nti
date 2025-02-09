@@ -20,64 +20,60 @@ class CartItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(
-          horizontal: SizeApp.s16.w, vertical: SizeApp.s8.h),
-      child: Padding(
-        padding: const EdgeInsets.all(SizeApp.s16),
-        child: Row(
-          children: [
-            CachedNetworkImage(
-              imageUrl: cartItem.image,
-              placeholder: (context, url) => SpinKitFadingCircle(
-                color: Colors.grey,
-              ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              height: SizeApp.s80.h,
-              width: SizeApp.s80.w,
-              fit: BoxFit.cover,
+      margin: EdgeInsets.symmetric(vertical: SizeApp.s8.h),
+      child: Row(
+        children: [
+          CachedNetworkImage(
+            imageUrl: cartItem.image,
+            placeholder: (context, url) => SpinKitFadingCircle(
+              color: Colors.grey,
             ),
-            SizedBox(width: SizeApp.s16.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    cartItem.name,
-                    style: bold16(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    cartItem.description,
-                    style: grey14(),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: SizeApp.s8.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "\$${cartItem.price.toStringAsFixed(2)}",
-                        style: green14(),
-                      ),
-                      Text(
-                        "Qty: ${cartItem.quantity}",
-                        style: blue14(),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            AddCartCubit.get(context)
-                                .deleteProduct(productId: productId);
-                          },
-                          icon: Icon(Icons.delete)),
-                    ],
-                  ),
-                ],
-              ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            height: SizeApp.s80.h,
+            width: SizeApp.s80.w,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(width: SizeApp.s16.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  cartItem.name,
+                  style: bold16(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  cartItem.description,
+                  style: grey14(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: SizeApp.s8.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "\$${cartItem.price.toStringAsFixed(2)}",
+                      style: green14(),
+                    ),
+                    Text(
+                      "Qty: ${cartItem.quantity}",
+                      style: blue14(),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          AddCartCubit.get(context)
+                              .deleteProduct(productId: productId);
+                        },
+                        icon: Icon(Icons.delete)),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -17,15 +17,10 @@ import 'bloc_listener.dart';
 import 'custom_material_button.dart';
 
 class LoginBody extends StatefulWidget {
-  final TextEditingController passwordController;
-  final TextEditingController emailController;
-  final GlobalKey<FormState> formKey;
-
   const LoginBody({
     super.key,
-    required this.passwordController,
-    required this.emailController,
-    required this.formKey,
+    // required this.passwordController,
+    // required this.emailController,
   });
 
   @override
@@ -33,18 +28,29 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: blocListener,
+      listener: loginBlocListener,
       builder: (context, state) {
         AuthCubit cubit = BlocProvider.of(context);
         return Center(
           child: SingleChildScrollView(
             child: Form(
-              key: widget.formKey,
+              key: formKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: SizeApp.s8.w),
                 child: Column(
@@ -54,7 +60,7 @@ class _LoginBodyState extends State<LoginBody> {
                     CustomTextFormField(
                       label: StringApp.email,
                       hintText: StringApp.email,
-                      controller: widget.emailController,
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       prefixIcon: Icon(Icons.email),
                       validator: (value) {
@@ -64,7 +70,7 @@ class _LoginBodyState extends State<LoginBody> {
                     CustomTextFormField(
                       label: StringApp.password,
                       hintText: StringApp.password,
-                      controller: widget.passwordController,
+                      controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       prefixIcon: Icon(Icons.person),
                       suffixIcon: IconButton(
@@ -82,15 +88,18 @@ class _LoginBodyState extends State<LoginBody> {
                       },
                     ),
                     state is AuthLoadingState
-                        ? SpinKitFadingCircle(color: Colors.grey,size: 35,)
+                        ? SpinKitFadingCircle(
+                            color: Colors.grey,
+                            size: 35,
+                          )
                         : CustomMaterialButton(
                             text: StringApp.login,
                             textStyle: whiteBold12(),
                             color: ColorApp.kButtonColor,
                             onPressed: () {
                               cubit.loginCubit(
-                                  email: widget.emailController.text,
-                                  password: widget.passwordController.text);
+                                  email: emailController.text,
+                                  password: passwordController.text);
                             },
                           ),
                     Row(

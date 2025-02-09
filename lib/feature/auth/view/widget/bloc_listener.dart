@@ -5,7 +5,7 @@ import '../../../categories/view/screen/category_screen.dart';
 import '../../cubit/auth_state.dart';
 import '../../../../core/widget/custom_snack_bar.dart';
 
-void blocListener(context, state) {
+void loginBlocListener(context, state) {
   if (state is AuthSuccessState) {
     if (state.userData["status"] == "success") {
       customSnackBar(

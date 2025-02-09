@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/core/style/size_app.dart';
-
 TextStyle whiteBold16() {
   return TextStyle(
       color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.sp);
+}
+
+TextStyle white18() {
+  return TextStyle(
+      color: Colors.white, fontSize: 18.sp);
 }
 
 TextStyle bold18() {
@@ -63,7 +67,9 @@ TextStyle green14() {
     fontSize: 14.sp,
     color: Colors.green,
   );
-}TextStyle blue14() {
+}
+
+TextStyle blue14() {
   return TextStyle(
     fontSize: 14.sp,
     color: Colors.blue,

@@ -4,24 +4,8 @@ import '../../../../core/style/color_app.dart';
 import '../../../../core/style/string_app.dart';
 import '../../../../core/style/text_style.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final passwordController = TextEditingController();
-  final emailController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: ColorApp.kButtonColor,
       ),
       body: LoginBody(
-        passwordController: passwordController,
-        emailController: emailController,
-        formKey: formKey,
+        // passwordController: passwordController,
+        // emailController: emailController,
+        // formKey: formKey,
       ),
     );
   }
