@@ -104,6 +104,7 @@ class _LoginBodyState extends State<LoginBody> {
                         Flexible(
                           child: Text(
                             StringApp.doNotHaveAcc,
+
                             style: black18(),
                           ),
                         ),
